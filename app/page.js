@@ -1,11 +1,23 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa';
+import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  FaGithub,
+  FaInstagram,
+  FaWhatsapp,
+  FaFacebook,
+  FaGraduationCap,
+  FaLaptopCode,
+  FaRocket,
+  FaMapMarkerAlt,
+} from 'react-icons/fa'
+import { FiMenu, FiX, FiArrowRight } from 'react-icons/fi'
 
 export default function Home() {
   const [selectedBlog, setSelectedBlog] = useState(null)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const blogs = [
     {
@@ -32,258 +44,598 @@ export default function Home() {
   ]
 
   return (
-    <main className="snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
+    <main className="min-h-screen bg-white text-gray-900 scroll-smooth">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+      <nav className="fixed top-0 left-0 w-full bg-white/85 backdrop-blur-md shadow-xs z-50 border-b border-gray-100 transition-all">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-blue-600">Portofolio</h1>
-          <ul className="hidden md:flex space-x-6 text-gray-700 font-medium">
-            <li><a href="#home" className="hover:text-blue-600">Home</a></li>
-            <li><a href="#about" className="hover:text-blue-600">About</a></li>
-            <li><a href="#blog" className="hover:text-blue-600">Blog</a></li>
-            <li><a href="#contact" className="hover:text-blue-600">Contact</a></li>
-          </ul>
+          <a href="#home" className="text-xl font-extrabold tracking-tight text-gray-900 group">
+            agus<span className="text-blue-600 group-hover:text-blue-700 transition">.dev</span>
+          </a>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center space-x-8">
+            <ul className="flex space-x-8 text-gray-600 font-medium text-sm">
+              <li>
+                <a href="#home" className="hover:text-blue-600 transition">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="hover:text-blue-600 transition">
+                  Tentang
+                </a>
+              </li>
+              <li>
+                <a href="#blog" className="hover:text-blue-600 transition">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-blue-600 transition">
+                  Kontak
+                </a>
+              </li>
+            </ul>
+
+            <div className="flex items-center space-x-3 border-l border-gray-200 pl-6">
+              <a
+                href="https://github.com/antulaot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition"
+                aria-label="GitHub Profile"
+              >
+                <FaGithub size={18} />
+              </a>
+              <a
+                href="#contact"
+                className="px-4 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-xs transition hover:shadow-sm"
+              >
+                Hubungi Saya
+              </a>
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            className="md:hidden p-2 text-gray-700 hover:text-blue-600 rounded-lg focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
         </div>
+
+        {/* Mobile Dropdown */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white border-b border-gray-100 px-6 py-4 shadow-lg"
+            >
+              <ul className="flex flex-col space-y-3 font-medium text-gray-700">
+                <li>
+                  <a
+                    href="#home"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-1 hover:text-blue-600"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-1 hover:text-blue-600"
+                  >
+                    Tentang
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#blog"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-1 hover:text-blue-600"
+                  >
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-1 hover:text-blue-600"
+                  >
+                    Kontak
+                  </a>
+                </li>
+              </ul>
+              <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                <a
+                  href="https://github.com/antulaot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600"
+                >
+                  <FaGithub size={18} />
+                  <span>@antulaot</span>
+                </a>
+                <a
+                  href="#contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded bg-blue-600 text-white"
+                >
+                  Kontak
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
-      {/* Home */}
-<section id="home" className="pt-24 snap-start min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-white text-center text-gray-900">
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    viewport={{ once: true }}
-    className="max-w-3xl px-6"
-  >
-    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-blue-800 drop-shadow-sm">
-      Selamat Datang di <span className="text-blue-600">Portofolio Saya</span>
-    </h1>
-    <p className="text-lg md:text-xl text-gray-800 leading-relaxed tracking-wide">
-      Saya mahasiswa&nbsp;
-      <a 
-        href="https://itkk.ac.id" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="font-extrabold text-black"
+      {/* Home / Hero */}
+      <section
+        id="home"
+        className="pt-32 pb-20 md:pt-40 md:pb-28 min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50/70 via-white to-gray-50/40 text-center relative overflow-hidden"
       >
-        <span className="text-black">INSTITUT TEKNOLOGI </span>
-        <span className="text-red-600">KELING </span>
-        <span className="text-blue-600">KUMANG</span>
-      </a>
-      &nbsp;kelas sore yang lagi semangat belajar jadi <span className="font-semibold text-blue-700">Fullstack Developer</span>.
-      Saat ini, saya lagi aktif ngulik hal-hal seru di dunia <span className="underline decoration-blue-400">web development</span> dan mencoba bikin proyek digital yang <span className="italic">modern</span>, <span className="italic">interaktif</span>, dan tentunya <span className="italic">berguna</span>.
-    </p>
-  </motion.div>
-</section>
+        {/* Decorative background glow */}
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-blue-200/30 rounded-full blur-3xl pointer-events-none -z-10" />
 
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl px-6 relative z-10"
+        >
+          {/* Status Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-medium bg-blue-50 border border-blue-200 text-blue-700 shadow-xs mb-6"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Terbuka untuk Kolaborasi & Proyek Baru
+          </motion.div>
 
+          {/* Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 tracking-tight leading-tight mb-6">
+            Halo, Saya{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600">
+              Agus
+            </span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl font-bold text-gray-700 mt-2 font-mono">
+              Fullstack Web Developer
+            </span>
+          </h1>
+
+          {/* Subtitle / Bio summary */}
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-gray-600 leading-relaxed mb-8">
+            Mahasiswa di{' '}
+            <a
+              href="https://itkk.ac.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-blue-700 hover:text-blue-900 underline underline-offset-4 transition"
+            >
+              Institut Teknologi Keling Kumang
+            </a>{' '}
+            yang antusias mengembangkan aplikasi web modern — memadukan antarmuka pengguna yang interaktif dengan arsitektur backend andal dan efisien.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+            <a
+              href="#about"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <span>Pelajari Profil Saya</span>
+              <FiArrowRight />
+            </a>
+            <a
+              href="https://github.com/antulaot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-medium shadow-sm transition-all hover:-translate-y-0.5"
+            >
+              <FaGithub className="text-lg" />
+              <span>Kunjungi GitHub</span>
+            </a>
+          </div>
+
+          {/* Quick Social Links */}
+          <div className="flex items-center justify-center gap-4 text-gray-500">
+            <a
+              href="https://github.com/antulaot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full hover:bg-gray-100 hover:text-gray-900 transition"
+              aria-label="GitHub"
+            >
+              <FaGithub size={20} />
+            </a>
+            <a
+              href="https://wa.me/6289528039177"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full hover:bg-emerald-50 hover:text-emerald-600 transition"
+              aria-label="WhatsApp"
+            >
+              <FaWhatsapp size={20} />
+            </a>
+            <a
+              href="https://www.instagram.com/agus1398_?igsh=MW42dnRyZDF6aG5hcA%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full hover:bg-pink-50 hover:text-pink-600 transition"
+              aria-label="Instagram"
+            >
+              <FaInstagram size={20} />
+            </a>
+            <a
+              href="https://www.facebook.com/share/155VFPF9Lc/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full hover:bg-blue-50 hover:text-blue-600 transition"
+              aria-label="Facebook"
+            >
+              <FaFacebook size={20} />
+            </a>
+          </div>
+        </motion.div>
+      </section>
 
       {/* About */}
-      <motion.section
-        id="about"
-        className="pt-20 snap-start min-h-screen flex items-center justify-center px-6 bg-white text-gray-900"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            <h2 className="text-4xl font-bold mb-4 text-blue-700">Tentang Saya</h2>
-            <p className="text-lg mb-4 leading-relaxed">
-        Saya lagi belajar jadi <strong>Pengembang Web Fullstack</strong> dari nol. Mulai dari bikin tampilan antarmuka sampai ngatur backend dan database, semuanya saya pelajari sedikit demi sedikit sambil bikin proyek pribadi.
-        Saat ini, saya lagi ngulik <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript</strong>, <strong>React/Next.js</strong>, terus juga <strong>Node.js</strong> dan <strong>Laravel</strong> buat bagian server-nya.
-      </p>
-      <p className="text-base text-gray-700">
-        Tujuan saya sih simpel : pengen bikin aplikasi web yang nggak cuma jalan, tapi juga rapi, efisien, dan gampang dikembangin ke depannya. Oh iya, website ini saya buat pakai Next.js dan Tailwind CSS.
-      </p>
+      <section id="about" className="py-24 px-6 bg-white text-gray-900 relative">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+          >
+            {/* Foto Profil & Badge Kiri */}
+            <div className="lg:col-span-5 flex justify-center order-1 lg:order-1">
+              <div className="relative group">
+                {/* Glow Background */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition duration-700" />
 
+                {/* Photo container */}
+                <div className="relative bg-white p-3 rounded-2xl shadow-xl border border-gray-100">
+                  <div className="relative w-64 h-72 sm:w-72 sm:h-80 overflow-hidden rounded-xl">
+                    <Image
+                      src="/images/profil.png"
+                      alt="Foto Profil Agus"
+                      fill
+                      sizes="(max-width: 640px) 256px, 288px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      priority
+                    />
+                  </div>
 
-          </div>
+                  {/* Floating Badge */}
+                  <div className="absolute -bottom-4 -right-4 bg-white/95 backdrop-blur-xs border border-gray-100 shadow-lg px-4 py-2 rounded-xl flex items-center gap-2">
+                    <FaLaptopCode className="text-blue-600 text-lg" />
+                    <div>
+                      <p className="text-xs text-gray-500 leading-none">Minat Utama</p>
+                      <p className="text-xs font-bold text-gray-800">Fullstack Dev</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <div className="relative w-full h-[300px] md:h-[400px] flex justify-center items-center order-1 md:order-2">
-            <div className="absolute w-72 h-72 bg-blue-100 rounded-full z-0 animate-pulse blur-2xl" />
-            <img
-              src="/images/profil.png"
-              alt="Foto Profil"
-              className="z-10 w-72 h-72 rounded-2xl object-cover shadow-2xl border-4 border-white hover:scale-105 transition-transform duration-500"
-            />
-          </div>
+            {/* Konten Kanan */}
+            <div className="lg:col-span-7 order-2 lg:order-2">
+              <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2 inline-block">
+                TENTANG SAYA
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-gray-900 leading-tight">
+                Membangun Solusi Digital dengan Ketelitian & Semangat Belajar Tinggi
+              </h2>
+              <p className="text-base sm:text-lg mb-4 text-gray-700 leading-relaxed">
+                Saya adalah mahasiswa di <strong>Institut Teknologi Keling Kumang (ITKK)</strong> yang berdedikasi mendalami rekayasa web secara komprehensif. Mulai dari merancang antarmuka pengguna yang responsif hingga arsitektur server, basis data relasional, dan integrasi API yang tangguh.
+              </p>
+              <p className="text-base text-gray-600 mb-8 leading-relaxed">
+                Fokus utama saya adalah menciptakan aplikasi digital yang tidak hanya berjalan dengan baik, tetapi juga memiliki performa cepat, penulisan kode yang rapi (clean code), serta arsitektur yang mudah dirawat dan dikembangkan di masa depan.
+              </p>
+
+              {/* Highlights 4 Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-gray-100">
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50/80 border border-gray-100">
+                  <div className="p-2.5 rounded-lg bg-blue-100 text-blue-700">
+                    <FaGraduationCap size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs text-gray-500 font-medium">Pendidikan</h4>
+                    <p className="text-sm font-semibold text-gray-900">IT Keling Kumang</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50/80 border border-gray-100">
+                  <div className="p-2.5 rounded-lg bg-indigo-100 text-indigo-700">
+                    <FaLaptopCode size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs text-gray-500 font-medium">Stack Utama</h4>
+                    <p className="text-sm font-semibold text-gray-900">Next.js, Laravel, Nuxt</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50/80 border border-gray-100">
+                  <div className="p-2.5 rounded-lg bg-emerald-100 text-emerald-700">
+                    <FaRocket size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs text-gray-500 font-medium">Portofolio Proyek</h4>
+                    <p className="text-sm font-semibold text-gray-900">WMS, IoT Kebun, POS</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50/80 border border-gray-100">
+                  <div className="p-2.5 rounded-lg bg-purple-100 text-purple-700">
+                    <FaMapMarkerAlt size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs text-gray-500 font-medium">Domisili</h4>
+                    <p className="text-sm font-semibold text-gray-900">Indonesia</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Blog */}
-      <motion.section
-        id="blog"
-        className="pt-20 snap-start min-h-screen flex flex-col items-center justify-center px-6 bg-gray-50 text-gray-900"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-4xl font-bold mb-6 text-blue-700">Blog</h2>
+      <section id="blog" className="py-24 px-6 bg-gray-50 text-gray-900">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2 inline-block">
+              ARTIKEL & CATATAN
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+              Blog & Dokumentasi Belajar
+            </h2>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8">
-  {blogs.map((blog) => (
-    <div
-      key={blog.id}
-      className="bg-white rounded-lg shadow hover:shadow-md transition overflow-hidden"
-      >
-      <img
-        src={blog.image}
-        alt={blog.title}
-        className="w-full h-40 object-cover"
-      />
-      <div className="p-4">
-        <a href={blog.link} className="text-blue-700 font-semibold hover:underline">
-          {blog.title}
-        </a>
-        <p className="text-sm text-gray-600 mt-2">{blog.summary}</p>
-      </div>
-    </div>
-  ))}
-</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogs.map((blog) => (
+              <div
+                key={blog.id}
+                className="group bg-white rounded-xl shadow-xs hover:shadow-md border border-gray-100 transition-all duration-300 overflow-hidden flex flex-col cursor-pointer"
+                onClick={() => setSelectedBlog(blog)}
+              >
+                <div className="relative w-full h-44 overflow-hidden bg-gray-100">
+                  <Image
+                    src={blog.image}
+                    alt={blog.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition">
+                      {blog.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-2 leading-relaxed">
+                      {blog.summary}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-gray-50 text-blue-600 text-xs font-semibold inline-flex items-center gap-1">
+                    <span>Baca Ringkasan</span>
+                    <FiArrowRight size={14} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
+        {/* Modal Blog */}
         {selectedBlog && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedBlog(null)}
           >
             <div
-              className="bg-white w-11/12 max-w-md rounded-lg p-6 relative shadow-xl"
+              className="bg-white w-full max-w-md rounded-2xl p-6 relative shadow-2xl border border-gray-100"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedBlog(null)}
-                className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition"
+                aria-label="Tutup"
               >
-                <span className="text-xl">&times;</span>
+                <FiX size={20} />
               </button>
 
-              <img
-                src={selectedBlog.image}
-                alt={selectedBlog.title}
-                className="w-full h-48 object-cover rounded mb-4"
-              />
+              <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4 bg-gray-100">
+                <Image
+                  src={selectedBlog.image}
+                  alt={selectedBlog.title}
+                  fill
+                  sizes="400px"
+                  className="object-cover"
+                />
+              </div>
 
-              <h3 className="text-2xl font-bold mb-2 text-blue-700">{selectedBlog.title}</h3>
-              <p className="text-gray-700 mb-4">{selectedBlog.summary}</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                {selectedBlog.title}
+              </h3>
+              <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                {selectedBlog.summary}
+              </p>
 
-              <a
-                href={selectedBlog.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-              >
-                Baca Selengkapnya
-              </a>
+              <div className="flex gap-3">
+                <a
+                  href={selectedBlog.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center bg-blue-600 text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-blue-700 transition"
+                >
+                  Buka Sumber Referensi
+                </a>
+                <button
+                  onClick={() => setSelectedBlog(null)}
+                  className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+                >
+                  Tutup
+                </button>
+              </div>
             </div>
           </div>
         )}
-      </motion.section>
+      </section>
 
       {/* Contact */}
-<motion.section
-  id="contact"
-  className="pt-20 snap-start min-h-screen flex items-center justify-center px-6 bg-[#f0f4f8] text-[#1a1a1a]"
-  initial={{ opacity: 0, y: 50 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
->
-  <div className="max-w-6xl w-full flex flex-col items-center gap-8">
-    
-    {/* Form Kontak */}
-    <div className="w-full md:w-2/3">
-      <h2 className="text-4xl font-bold mb-4 text-center">Kontak Saya</h2>
-      <form className="space-y-4 mb-6 w-full">
-        <div>
-          <label className="block mb-1 font-medium">Nama</label>
-          <input
-            type="text"
-            name="nama"
-            className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Nama Anda"
-          />
+      <section
+        id="contact"
+        className="py-24 px-6 bg-[#f8fafc] text-gray-900 border-t border-gray-100"
+      >
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2 inline-block">
+              HUBUNGI SAYA
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+              Mari Terhubung & Berdiskusi
+            </h2>
+            <p className="text-gray-600 mt-2 text-sm sm:text-base max-w-lg mx-auto">
+              Punya pertanyaan, tawaran proyek, atau ingin bertukar pikiran seputar web development? Silakan hubungi saya melalui form di bawah atau via media sosial.
+            </p>
+          </motion.div>
+
+          <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-sm border border-gray-100 max-w-2xl mx-auto">
+            <form className="space-y-4 mb-8">
+              <div>
+                <label className="block mb-1.5 text-sm font-semibold text-gray-700">
+                  Nama Lengkap
+                </label>
+                <input
+                  type="text"
+                  name="nama"
+                  className="w-full border border-gray-200 px-4 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-sm"
+                  placeholder="Nama Anda"
+                />
+              </div>
+              <div>
+                <label className="block mb-1.5 text-sm font-semibold text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  className="w-full border border-gray-200 px-4 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-sm"
+                  placeholder="email@example.com"
+                />
+              </div>
+              <div>
+                <label className="block mb-1.5 text-sm font-semibold text-gray-700">
+                  Pesan
+                </label>
+                <textarea
+                  name="pesan"
+                  className="w-full border border-gray-200 px-4 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition text-sm"
+                  rows={4}
+                  placeholder="Tulis pesan atau topik diskusi Anda..."
+                ></textarea>
+              </div>
+              <button
+                type="button"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md shadow-blue-500/20 transition-all hover:shadow-lg cursor-pointer"
+                onClick={() => {
+                  const nama = document.querySelector('input[name="nama"]')?.value
+                  const email = document.querySelector('input[name="email"]')?.value
+                  const pesan = document.querySelector('textarea[name="pesan"]')?.value
+
+                  if (!nama || !email || !pesan) {
+                    alert('Mohon lengkapi semua kolom.')
+                    return
+                  }
+
+                  const text = `Halo, saya ${nama}\nEmail: ${email}\nPesan: ${pesan}`
+                  const waLink = `https://wa.me/6289528039177?text=${encodeURIComponent(text)}`
+                  window.open(waLink, '_blank')
+                }}
+              >
+                Kirim via WhatsApp
+              </button>
+            </form>
+
+            {/* Media Sosial */}
+            <div className="pt-6 border-t border-gray-100 text-center">
+              <h3 className="text-sm font-semibold text-gray-700 mb-4">
+                Saluran Kontak & Media Sosial
+              </h3>
+              <div className="flex justify-center space-x-5 text-2xl">
+                <a
+                  href="https://github.com/antulaot"
+                  className="text-gray-700 hover:text-black transition-transform hover:scale-110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <FaGithub />
+                </a>
+                <a
+                  href="https://wa.me/6289528039177"
+                  className="text-green-600 hover:text-green-700 transition-transform hover:scale-110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp"
+                >
+                  <FaWhatsapp />
+                </a>
+                <a
+                  href="https://www.facebook.com/share/155VFPF9Lc/?mibextid=wwXIfr"
+                  className="text-blue-600 hover:text-blue-700 transition-transform hover:scale-110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <FaFacebook />
+                </a>
+                <a
+                  href="https://www.instagram.com/agus1398_?igsh=MW42dnRyZDF6aG5hcA%3D%3D&utm_source=qr"
+                  className="text-pink-600 hover:text-pink-700 transition-transform hover:scale-110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label className="block mb-1 font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="email@example.com"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium">Pesan</label>
-          <textarea
-            name="pesan"
-            className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            rows="4"
-            placeholder="Tulis pesan Anda..."
-          ></textarea>
-        </div>
-        <button
-          type="button"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          onClick={() => {
-            const nama = document.querySelector('input[name="nama"]').value;
-            const email = document.querySelector('input[name="email"]').value;
-            const pesan = document.querySelector('textarea[name="pesan"]').value;
+      </section>
 
-            if (!nama || !email || !pesan) {
-              alert("Mohon lengkapi semua kolom.");
-              return;
-            }
-
-            const text = `Halo, saya ${nama}%0AEmail: ${email}%0APesan: ${pesan}`;
-            const waLink = `https://wa.me/6289528039177?text=${encodeURIComponent(text)}`;
-            window.open(waLink, '_blank');
-          }}
-        >
-          Kirim
-        </button>
-      </form>
-    </div>
-
-    {/* Ikon Sosial Media */}
-    <div className="mt-4">
-      <h3 className="text-lg font-semibold text-center text-gray-700 mb-2">Terhubung dengan saya</h3>
-      <div className="flex justify-center space-x-6 text-3xl">
-        <a
-          href="https://wa.me/6289528039177"
-          className="text-green-600 hover:text-green-800"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-        >
-          <FaWhatsapp />
-        </a>
-        <a
-          href="https://www.facebook.com/share/155VFPF9Lc/?mibextid=wwXIfr"
-          className="text-blue-700 hover:text-blue-900"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-        >
-          <FaFacebook />
-        </a>
-        <a
-          href="https://www.instagram.com/agus1398_?igsh=MW42dnRyZDF6aG5hcA%3D%3D&utm_source=qr"
-          className="text-pink-600 hover:text-pink-800"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-        >
-          <FaInstagram />
-        </a>
-      </div>
-    </div>
-
-  </div>
-</motion.section>
-
+      {/* Footer */}
+      <footer className="py-6 px-6 bg-white border-t border-gray-100 text-center text-xs text-gray-500">
+        <p>
+          &copy; {new Date().getFullYear()} Agus. Dibuat dengan Next.js & Tailwind CSS.
+        </p>
+      </footer>
     </main>
   )
 }

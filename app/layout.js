@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Portofolio Agus",
-  description: "",
+  title: "Agus | Fullstack Web Developer Portfolio",
+  description: "Portofolio resmi Agus - Fullstack Web Developer. Mahasiswa Institut Teknologi Keling Kumang dengan spesialisasi Next.js, React, Nuxt, Laravel, dan arsitektur web modern.",
 };
 
 export default function RootLayout({ children }) {
