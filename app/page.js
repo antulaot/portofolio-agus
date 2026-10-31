@@ -12,6 +12,10 @@ import {
   FaLaptopCode,
   FaRocket,
   FaMapMarkerAlt,
+  FaRobot,
+  FaBrain,
+  FaNetworkWired,
+  FaLayerGroup,
 } from 'react-icons/fa'
 import { FiMenu, FiX, FiArrowRight } from 'react-icons/fi'
 
@@ -199,7 +203,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-medium bg-blue-50 border border-blue-200 text-blue-700 shadow-xs mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Terbuka untuk Kolaborasi & Proyek Baru
+            AI-Native Workflow • Exploring System Design & AI Engineering
           </motion.div>
 
           {/* Headline */}
@@ -209,7 +213,7 @@ export default function Home() {
               Agus
             </span>
             <span className="block text-2xl sm:text-3xl md:text-4xl font-bold text-gray-700 mt-2 font-mono">
-              Fullstack Web Developer
+              AI-Native Engineer
             </span>
           </h1>
 
@@ -224,7 +228,7 @@ export default function Home() {
             >
               Institut Teknologi Keling Kumang
             </a>{' '}
-            yang antusias mengembangkan aplikasi web modern — memadukan antarmuka pengguna yang interaktif dengan arsitektur backend andal dan efisien.
+            yang berfokus membangun aplikasi modern dengan pendekatan <em>AI-Native</em>. Sedang aktif mendalami <span className="font-semibold text-gray-800">System Design</span> dan memiliki ketertarikan tinggi pada <span className="font-semibold text-gray-800">AI Engineering</span>.
           </p>
 
           {/* CTA Buttons */}
@@ -320,10 +324,10 @@ export default function Home() {
 
                   {/* Floating Badge */}
                   <div className="absolute -bottom-4 -right-4 bg-white/95 backdrop-blur-xs border border-gray-100 shadow-lg px-4 py-2 rounded-xl flex items-center gap-2">
-                    <FaLaptopCode className="text-blue-600 text-lg" />
+                    <FaRobot className="text-blue-600 text-lg" />
                     <div>
-                      <p className="text-xs text-gray-500 leading-none">Minat Utama</p>
-                      <p className="text-xs font-bold text-gray-800">Fullstack Dev</p>
+                      <p className="text-xs text-gray-500 leading-none">Alur Kerja</p>
+                      <p className="text-xs font-bold text-gray-800">AI-Native Eng</p>
                     </div>
                   </div>
                 </div>
@@ -336,13 +340,13 @@ export default function Home() {
                 TENTANG SAYA
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-gray-900 leading-tight">
-                Membangun Solusi Digital dengan Ketelitian & Semangat Belajar Tinggi
+                Membangun Software Modern Lewat Arsitektur Sistem yang Kokoh & Kolaborasi AI
               </h2>
               <p className="text-base sm:text-lg mb-4 text-gray-700 leading-relaxed">
-                Saya adalah mahasiswa di <strong>Institut Teknologi Keling Kumang (ITKK)</strong> yang berdedikasi mendalami rekayasa web secara komprehensif. Mulai dari merancang antarmuka pengguna yang responsif hingga arsitektur server, basis data relasional, dan integrasi API yang tangguh.
+                Saya adalah mahasiswa di <strong>Institut Teknologi Keling Kumang (ITKK)</strong> yang mempraktikkan alur kerja <em>AI-Native Engineering</em>. Alih-alih terpaku hanya pada penulisan sintaks manual, saya fokus membedah kebutuhan masalah, merancang arsitektur sistem, dan memanfaatkan model kecerdasan buatan sebagai rekan rekayasa perangkat lunak untuk menghasilkan solusi nyata dengan cepat dan efisien.
               </p>
               <p className="text-base text-gray-600 mb-8 leading-relaxed">
-                Fokus utama saya adalah menciptakan aplikasi digital yang tidak hanya berjalan dengan baik, tetapi juga memiliki performa cepat, penulisan kode yang rapi (clean code), serta arsitektur yang mudah dirawat dan dikembangkan di masa depan.
+                Saat ini saya aktif mendalami prinsip <strong>System Design</strong> untuk memahami bagaimana merancang aliran data, struktur database, serta backend yang skalabel. Di sisi lain, saya memiliki antusiasme mendalam pada <strong>AI Engineering</strong>—mengeksplorasi bagaimana AI dapat diintegrasikan secara cerdas ke dalam aplikasi masa depan.
               </p>
 
               {/* Highlights 4 Cards */}
@@ -359,31 +363,31 @@ export default function Home() {
 
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50/80 border border-gray-100">
                   <div className="p-2.5 rounded-lg bg-indigo-100 text-indigo-700">
-                    <FaLaptopCode size={18} />
+                    <FaBrain size={18} />
                   </div>
                   <div>
-                    <h4 className="text-xs text-gray-500 font-medium">Stack Utama</h4>
-                    <p className="text-sm font-semibold text-gray-900">Next.js, Laravel, Nuxt</p>
+                    <h4 className="text-xs text-gray-500 font-medium">Fokus Belajar</h4>
+                    <p className="text-sm font-semibold text-gray-900">System Design</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50/80 border border-gray-100">
                   <div className="p-2.5 rounded-lg bg-emerald-100 text-emerald-700">
-                    <FaRocket size={18} />
+                    <FaRobot size={18} />
                   </div>
                   <div>
-                    <h4 className="text-xs text-gray-500 font-medium">Portofolio Proyek</h4>
-                    <p className="text-sm font-semibold text-gray-900">WMS, IoT Kebun, POS</p>
+                    <h4 className="text-xs text-gray-500 font-medium">Minat Khusus</h4>
+                    <p className="text-sm font-semibold text-gray-900">AI Engineering</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50/80 border border-gray-100">
                   <div className="p-2.5 rounded-lg bg-purple-100 text-purple-700">
-                    <FaMapMarkerAlt size={18} />
+                    <FaLayerGroup size={18} />
                   </div>
                   <div>
-                    <h4 className="text-xs text-gray-500 font-medium">Domisili</h4>
-                    <p className="text-sm font-semibold text-gray-900">Indonesia</p>
+                    <h4 className="text-xs text-gray-500 font-medium">Eksplorasi Stack</h4>
+                    <p className="text-sm font-semibold text-gray-900">Next.js, Nuxt, Laravel</p>
                   </div>
                 </div>
               </div>
