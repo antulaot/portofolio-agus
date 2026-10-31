@@ -80,14 +80,14 @@ export default function Home() {
       icon: <FiCode className="text-zinc-800 text-xl" />,
       title: 'Eksplorasi Modern Stack',
       description:
-        'Bereksperimen membangun aplikasi nyata menggunakan Next.js, Nuxt 3, Laravel, Supabase, dan Bun runtime performan tinggi.',
+        'Bereksperimen membangun aplikasi nyata menggunakan Next.js, Nuxt, Laravel, Supabase, dan Bun runtime performan tinggi.',
       tag: 'Ecosystem & Runtime',
     },
   ]
 
   const techStack = [
     'Next.js',
-    'Nuxt 3',
+    'Nuxt',
     'Laravel',
     'Vue.js',
     'React',
