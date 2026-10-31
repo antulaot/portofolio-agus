@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Agus | AI-Native Engineer Portfolio",
-  description: "Portofolio resmi Agus - AI-Native Engineer & Mahasiswa Institut Teknologi Keling Kumang. Mengembangkan software dengan workflow modern berbasis AI, eksplorasi System Design, dan AI Engineering.",
+  title: "Agus — Personal Site",
+  description: "Website personal Agus. Mahasiswa Institut Teknologi Keling Kumang yang sedang mendalami rekayasa web dan system design.",
 };
 
 export default function RootLayout({ children }) {
