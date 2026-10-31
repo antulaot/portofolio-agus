@@ -18,6 +18,15 @@ import {
 export default function Home() {
   const [selectedBlog, setSelectedBlog] = useState(null)
 
+  const scrollTo = (e, id) => {
+    e.preventDefault()
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      window.history.pushState(null, '', `#${id}`)
+    }
+  }
+
   const blogs = [
     {
       id: 1,
@@ -92,34 +101,51 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-zinc-900 font-sans antialiased selection:bg-zinc-200 selection:text-zinc-900 flex flex-col">
-      {/* Full-width Sticky Navbar */}
-      <header className="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-zinc-200/80 transition">
+      {/* Fixed Full-Width Navbar */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200/80 transition">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-18 flex items-center justify-between">
           <a
-            href="#intro"
-            className="font-mono text-base font-bold tracking-tight text-zinc-900 hover:text-zinc-600 transition flex items-center gap-1"
+            href="#home"
+            onClick={(e) => scrollTo(e, 'home')}
+            className="font-mono text-base font-bold tracking-tight text-zinc-900 hover:text-zinc-600 transition flex items-center gap-1 cursor-pointer"
           >
             agus<span className="text-zinc-400 font-normal">.dev</span>
           </a>
 
-          <nav className="flex items-center space-x-6 sm:space-x-10 text-sm font-medium text-zinc-600">
-            <a href="#about" className="hover:text-zinc-950 transition">
-              Tentang
+          <nav className="flex items-center space-x-6 sm:space-x-8 text-sm font-medium text-zinc-600">
+            <a
+              href="#home"
+              onClick={(e) => scrollTo(e, 'home')}
+              className="hover:text-zinc-950 transition cursor-pointer"
+            >
+              Home
             </a>
-            <a href="#focus" className="hover:text-zinc-950 transition">
+            <a
+              href="#focus"
+              onClick={(e) => scrollTo(e, 'focus')}
+              className="hover:text-zinc-950 transition cursor-pointer"
+            >
               Fokus
             </a>
-            <a href="#notes" className="hover:text-zinc-950 transition">
+            <a
+              href="#notes"
+              onClick={(e) => scrollTo(e, 'notes')}
+              className="hover:text-zinc-950 transition cursor-pointer"
+            >
               Catatan
             </a>
-            <a href="#contact" className="hover:text-zinc-950 transition">
+            <a
+              href="#contact"
+              onClick={(e) => scrollTo(e, 'contact')}
+              className="hover:text-zinc-950 transition cursor-pointer"
+            >
               Kontak
             </a>
             <a
               href="https://github.com/antulaot"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-800 hover:text-zinc-950 hover:bg-zinc-50 transition shadow-2xs"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-zinc-200 text-xs font-mono text-zinc-800 hover:text-zinc-950 hover:bg-zinc-50 transition shadow-2xs"
             >
               <FaGithub size={13} />
               <span>GitHub</span>
@@ -129,13 +155,16 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content Area */}
+      {/* Main Sections - Setiap section 1 layar penuh (min-h-screen) */}
       <main className="flex-1">
-        {/* Hero Section - Full width container */}
-        <section id="intro" className="w-full py-16 sm:py-24 lg:py-28">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        {/* Section 1: Home / Hero (Full Viewport Height) */}
+        <section
+          id="home"
+          className="min-h-screen w-full flex flex-col justify-center scroll-mt-18 pt-24 pb-16"
+        >
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              {/* Teks Kiri (7-8 kolom) */}
+              {/* Teks Kiri */}
               <div className="lg:col-span-8 space-y-7">
                 <div>
                   <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-zinc-100 text-zinc-700 border border-zinc-200/80 mb-4">
@@ -180,7 +209,8 @@ export default function Home() {
                 <div className="flex flex-wrap items-center gap-4 pt-3">
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-medium text-sm transition shadow-xs"
+                    onClick={(e) => scrollTo(e, 'contact')}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-medium text-sm transition shadow-xs cursor-pointer"
                   >
                     <span>Hubungi Saya</span>
                     <FiSend size={14} />
@@ -207,7 +237,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Foto Profil Kanan (4-5 kolom) */}
+              {/* Foto Profil Kanan */}
               <div className="lg:col-span-4 flex justify-center lg:justify-end">
                 <div className="w-full max-w-xs sm:max-w-sm space-y-4">
                   <div className="relative w-full aspect-4/5 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-zinc-100 group">
@@ -233,9 +263,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section Fokus (System Design) - Full-width background dengan 4 Kolom Grid */}
-        <section id="focus" className="w-full py-20 lg:py-28 bg-zinc-50/70 border-y border-zinc-200/80">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 space-y-12">
+        {/* Section 2: Fokus & System Design (Full Viewport Height) */}
+        <section
+          id="focus"
+          className="min-h-screen w-full flex flex-col justify-center scroll-mt-18 py-24 bg-zinc-50/70 border-y border-zinc-200/80"
+        >
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full space-y-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold block mb-2">
@@ -250,12 +283,12 @@ export default function Home() {
               </p>
             </div>
 
-            {/* 4 Kolom Melebar di Desktop */}
+            {/* 4 Kolom Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {focusAreas.map((item, index) => (
                 <div
                   key={index}
-                  className="p-6 sm:p-7 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-xs transition duration-200 flex flex-col justify-between"
+                  className="p-7 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-xs transition duration-200 flex flex-col justify-between"
                 >
                   <div>
                     <div className="w-12 h-12 rounded-xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center mb-5">
@@ -277,9 +310,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section Catatan / Dokumentasi - 3 Kolom Grid di Desktop */}
-        <section id="notes" className="w-full py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 space-y-12">
+        {/* Section 3: Catatan & Dokumentasi (Full Viewport Height) */}
+        <section
+          id="notes"
+          className="min-h-screen w-full flex flex-col justify-center scroll-mt-18 py-24"
+        >
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full space-y-12">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold block mb-2">
@@ -294,7 +330,7 @@ export default function Home() {
               </span>
             </div>
 
-            {/* 3 Kolom Kartu Melebar di Layar Desktop */}
+            {/* 3 Kolom Kartu Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {blogs.map((blog) => (
                 <article
@@ -335,9 +371,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section Kontak - Full-width background dengan 2 Kolom Seimbang */}
-        <section id="contact" className="w-full py-20 lg:py-28 bg-zinc-50/70 border-t border-zinc-200/80">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        {/* Section 4: Kontak (Full Viewport Height) */}
+        <section
+          id="contact"
+          className="min-h-screen w-full flex flex-col justify-center scroll-mt-18 py-24 bg-zinc-50/70 border-t border-zinc-200/80"
+        >
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               {/* Kolom Kiri - Info Kontak (5 Kolom) */}
               <div className="lg:col-span-5 space-y-6">
@@ -537,7 +576,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Full-width Balanced Footer */}
+      {/* Footer */}
       <footer className="w-full border-t border-zinc-200/80 bg-white py-12">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-zinc-500 font-mono">
           <p>© {new Date().getFullYear()} Agus • Mahasiswa Institut Teknologi Keling Kumang</p>
