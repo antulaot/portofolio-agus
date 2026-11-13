@@ -61,7 +61,7 @@ export default function Home() {
       text: 'Agus System Shell v2.4 (x86_64-pc-linux-gnu)\nKetik "help" untuk melihat daftar perintah, atau klik tombol cepat di bawah.',
     },
   ])
-  const terminalBottomRef = useRef(null)
+  const terminalLogsRef = useRef(null)
 
   // Form State
   const [formNama, setFormNama] = useState('')
@@ -159,8 +159,11 @@ export default function Home() {
     setTerminalInput('')
 
     setTimeout(() => {
-      if (terminalBottomRef.current) {
-        terminalBottomRef.current.scrollIntoView({ behavior: 'smooth' })
+      if (terminalLogsRef.current) {
+        terminalLogsRef.current.scrollTo({
+          top: terminalLogsRef.current.scrollHeight,
+          behavior: 'smooth',
+        })
       }
     }, 50)
   }
@@ -1001,6 +1004,7 @@ export default function Home() {
                 (cmd) => (
                   <button
                     key={cmd}
+                    type="button"
                     onClick={() => runTerminalCommand(cmd)}
                     className="px-3 py-1 rounded-lg text-xs font-mono bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-emerald-600 dark:hover:text-emerald-400 transition cursor-pointer shadow-2xs"
                   >
@@ -1026,7 +1030,10 @@ export default function Home() {
               </div>
 
               {/* Terminal Logs & History */}
-              <div className="p-5 sm:p-7 max-h-96 overflow-y-auto space-y-3 font-mono leading-relaxed bg-zinc-950/80">
+              <div
+                ref={terminalLogsRef}
+                className="p-5 sm:p-7 max-h-96 overflow-y-auto space-y-3 font-mono leading-relaxed bg-zinc-950/80"
+              >
                 {terminalHistory.map((item, index) => (
                   <div key={index}>
                     {item.type === 'input' ? (
@@ -1040,7 +1047,6 @@ export default function Home() {
                     )}
                   </div>
                 ))}
-                <div ref={terminalBottomRef} />
               </div>
 
               {/* Terminal Input Line */}
