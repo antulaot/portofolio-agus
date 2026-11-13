@@ -169,7 +169,7 @@ export default function Home() {
                 <div>
                   <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-zinc-100 text-zinc-700 border border-zinc-200/80 mb-4">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    Institut Teknologi Keling Kumang • Kelas Sore
+                    Institut Teknologi Keling Kumang
                   </span>
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-zinc-900 leading-tight">
                     Halo, Saya Agus.
@@ -242,7 +242,7 @@ export default function Home() {
                 <div className="w-full max-w-xs sm:max-w-sm space-y-4">
                   <div className="relative w-full aspect-4/5 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-zinc-100 group">
                     <Image
-                      src="/images/profil.png"
+                      src="/images/profil2.png"
                       alt="Foto Agus"
                       fill
                       sizes="(max-width: 768px) 320px, 384px"

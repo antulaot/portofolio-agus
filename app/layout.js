@@ -14,6 +14,10 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Agus — Personal Site",
   description: "Website personal Agus. Mahasiswa Institut Teknologi Keling Kumang yang sedang mendalami rekayasa web dan system design.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
